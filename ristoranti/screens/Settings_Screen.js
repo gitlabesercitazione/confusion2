@@ -14,12 +14,11 @@ import {
   RkStyleSheet
 } from 'react-native-ui-kitten';
 
-import firebase from 'firebase';
 
 import { Header } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { logoutUser, userDetailsFetch } from '../actions';
-
+import firebase from 'firebase';
 
 import users from './../data/raw/users';
 import {Avatar} from './../components';
@@ -51,9 +50,11 @@ class Settings_Screen extends Component {
 
   constructor(props) {
     super(props);
-    this.user = {
-      email : this.props
+    this.user = firebase.auth().currentUser;
+    this.props.state = {
+      flaglogin :true
     }
+    console.log(" oggetto : ");
     console.log(this.user);
 
     this.state = {
@@ -61,15 +62,13 @@ class Settings_Screen extends Component {
       lastName: this.user.lastName,
       email: this.user.email,
       phone: this.user.phone,
-      currentUser: ""
-    }
+    } 
   }
 
   componentWillMount() {
-    const { currentUser } = firebase.auth()
-    this.setState({ currentUser })
-    console.log(this.currentUser);
-    console.log('email 2 ==============>'+this.currentUser);
+    this.props.userDetailsFetch();
+    console.log('userdetails');
+    console.log(this.props.userdetails);
     if ( this.props.userdetails ) {
       const {myfirstname} = this.props.userdetails;
       this.setState({ firstName: myfirstname });
@@ -77,12 +76,12 @@ class Settings_Screen extends Component {
   }
 
   render() {
-    console.log('email ================> '+ this.props.email);
-    console.log(this.props.userdetails);
-    if ( this.props.userdetails ) {
-      var {firstname, lastname, email, phone} = this.props.userdetails;
-    }else{
-      var {email} = this.props;
+    console.log('userdetails');
+    console.log(this.user.email);
+    console.log('RkTheme.current.colors.accent = ' + RkTheme.current.colors.acc);
+    console.log('RkTheme.current.colors.alterBackground = ' + RkTheme.current.colors.alterBackground);
+    if ( this.user ) {
+      var {firstname, lastname, email, phone} = this.user;
     }
     return (
       <ScrollView style={styles.root}>
@@ -162,6 +161,7 @@ let styles = RkStyleSheet.create(theme => ({
 }));
 
 const mapStateToProps = ({ userdata }) => {
+  console.log("prova =======================> ");
   const { userdetails } = userdata;
   return { userdetails };
 };

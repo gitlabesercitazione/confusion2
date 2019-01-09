@@ -37,23 +37,21 @@ import Settings_Screen from './screens/Settings_Screen';
 import { RootStack } from './config/router';
 import drawerStyles from './drawerStyles';
 import Drawer from 'react-native-drawer';
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
 
 
 import HomeComponent from './components/HomeComponent/HomeComponent';
 import {Home} from './screens/screenName';
-var {height, width } = 100;
-let routeConfigs = {
-  Home: {
-    screen: HomeComponent
-  }
-};
 
-let drawerNavigatorConfig = {
-// initialRouteName : Home,
-drawerWidth : width /2
-};
-
-const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
 export default class App extends React.Component {
 
   //state = { loggedIn: true };
@@ -132,73 +130,88 @@ renderMainContent = () => {
   render() {
 
     // const MainNavigator = TabNavigator({
-      
-    const MainNavigator = createBottomTabNavigator({
-      // settings_screen: { screen: Settings_Screen },
+      var {height, width } = 100;
+let routeConfigs = {
+  Home: {
+    screen: Main_Screen
+  },
+  Profile: {
+    screen: Settings_Screen
+  }
+};
 
-      Explore: {
-        screen: Explore,
-        navigationOptions: {
-          tabBarLabel: 'ESPLORA',
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-search-outline" color={tintColor} size={24} />
-          )
-        }
-      },
-      Saved: {
-        screen: Saved,
-        navigationOptions: {
-          tabBarLabel: 'PREFERITI',
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-heart-outline" color={tintColor} size={24} />
-          )
-        }
-      },
-      Trips: {
-        screen: Trips,
-        navigationOptions: {
-          tabBarLabel: 'PRENOTAZIONI',
-          tabBarIcon: ({ tintColor }) => (
-            <Image source={require('./assets/airbnb.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-          )
-        }
-      },
-      Inbox: {
-        screen: Inbox,
-        navigationOptions: {
-          tabBarLabel: 'RICHIESTE',
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-chatboxes-outline" color={tintColor} size={24} />
-          )
-        }
-      },
-      Profile: {
-        screen: Login_Screen,
-        navigationOptions: {
-          tabBarLabel: 'PROFILO',
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-person-outline" color={tintColor} size={24} />
-          )
-        }
-      },
-      Profile: {
-        screen: Profile_Screen,
+let drawerNavigatorConfig = {
+// initialRouteName : Home,
+drawerWidth : width /3
+};
+
+const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
+    // const MainNavigator = createBottomTabNavigator({
+    //   // settings_screen: { screen: Settings_Screen },
+
+    //   Explore: {
+    //     screen: Explore,
+    //     navigationOptions: {
+    //       tabBarLabel: 'ESPLORA',
+    //       tabBarIcon: ({ tintColor }) => (
+    //         <Icon name="ios-search-outline" color={tintColor} size={24} />
+    //       )
+    //     }
+    //   },
+    //   Saved: {
+    //     screen: Saved,
+    //     navigationOptions: {
+    //       tabBarLabel: 'PREFERITI',
+    //       tabBarIcon: ({ tintColor }) => (
+    //         <Icon name="ios-heart-outline" color={tintColor} size={24} />
+    //       )
+    //     }
+    //   },
+    //   Trips: {
+    //     screen: Trips,
+    //     navigationOptions: {
+    //       tabBarLabel: 'PRENOTAZIONI',
+    //       tabBarIcon: ({ tintColor }) => (
+    //         <Image source={require('./assets/airbnb.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
+    //       )
+    //     }
+    //   },
+    //   Inbox: {
+    //     screen: Inbox,
+    //     navigationOptions: {
+    //       tabBarLabel: 'RICHIESTE',
+    //       tabBarIcon: ({ tintColor }) => (
+    //         <Icon name="ios-chatboxes-outline" color={tintColor} size={24} />
+    //       )
+    //     }
+    //   },
+    //   Profile: {
+    //     screen: Login_Screen,
+    //     navigationOptions: {
+    //       tabBarLabel: 'PROFILO',
+    //       tabBarIcon: ({ tintColor }) => (
+    //         <Icon name="ios-person-outline" color={tintColor} size={24} />
+    //       )
+    //     }
+    //   },
+    //   Profile: {
+    //     screen: Profile_Screen,
        
-      }
-    }, {
-        tabBarOptions: {
-          activeTintColor: 'red',
-          inactiveTintColor: 'grey',
-          style: {
-            backgroundColor: 'white',
-            borderTopWidth: 0,
-            shadowOffset: { width: 5, height: 3 },
-            shadowColor: 'black',
-            shadowOpacity: 0.5,
-            elevation: 5
-          }
-        }
-      })
+    //   }
+    // }, {
+    //     tabBarOptions: {
+    //       activeTintColor: 'red',
+    //       inactiveTintColor: 'grey',
+    //       style: {
+    //         backgroundColor: 'white',
+    //         borderTopWidth: 0,
+    //         shadowOffset: { width: 5, height: 3 },
+    //         shadowColor: 'black',
+    //         shadowOpacity: 0.5,
+    //         elevation: 5
+    //       }
+    //     }
+    //   })
 
 //       loading_scr: { screen: Loading_Screen },
 
@@ -218,13 +231,19 @@ renderMainContent = () => {
       });
 
       return (
-
+        
         <Provider store={this.store}>
           <View style={styles2.container}>
-        <WellCome ref={navigatorRef => {
-              NavigatorService.setContainer(navigatorRef);}}></WellCome>
+       
+        {/* <WellCome ref={navigatorRef => {
+          NavigatorService.setContainer(navigatorRef);}}> */}
+                  <Toolbar/>
+{/* </WellCome> */}
           </View>
-        </Provider>
+          
+          </Provider>
+    
+
       );
   }
 }

@@ -30,9 +30,7 @@ class Welcome_Screen extends Component {
   }
 
   componentDidMount() {
-      console.log('---------------------------');
-      console.log('component did mount');
-      console.log('loadAssetAsync');
+   
       if ( !this.props.fontLoaded ) {
         // this._loadAssetsAsync();
         loadAssetsAsync();

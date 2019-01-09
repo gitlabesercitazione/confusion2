@@ -40,18 +40,19 @@ import Drawer from 'react-native-drawer';
 import HomeComponent from '../components/HomeComponent/HomeComponent';
 import {Home} from './screenName';
 var {height, width } = 100;
-let routeConfigs = {
-  Home: {
-    screen: HomeComponent
-  }
-};
+// let routeConfigs = {
+//   Home: {
+//     screen: Explore
+//   }
+// };
 
 let drawerNavigatorConfig = {
 // initialRouteName : Home,
 drawerWidth : width /2
 };
 
-const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
+
+// const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
 export default class MainNavigator extends React.Component {
 
   //state = { loggedIn: true };
@@ -63,12 +64,14 @@ export default class MainNavigator extends React.Component {
     
     super(props);
     this.state = {drawerOpen: null};
+    console.log("===============================================");
   
     bootstrap();
   }
 
   componentWillMount() {
   }
+  
 
 
   // async componentDidMount() {
@@ -129,7 +132,6 @@ renderMainContent = () => {
     // const MainNavigator = TabNavigator({
       
     const MainNavigator = createBottomTabNavigator({
-      // settings_screen: { screen: Settings_Screen },
 
       Explore: {
         screen: Explore,

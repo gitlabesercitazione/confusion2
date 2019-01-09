@@ -6,10 +6,11 @@ import {
 
 export const userDetailsFetch = () => {
   const { currentUser } = firebase.auth();
+  console.log( 'user : '+ currentUser.email);
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/userDetails`)
-      .on('value', snapshot => {
-        dispatch({ type: USERDETAILS_FETCH_SUCCESS, payload: snapshot.val() });
-      });
+    .on('value', snapshot => {
+      dispatch({ type: USERDETAILS_FETCH_SUCCESS, payload: snapshot.val() });
+    });
   };
 };

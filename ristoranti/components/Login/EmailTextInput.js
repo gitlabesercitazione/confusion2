@@ -68,8 +68,6 @@ validate = (text) => {
         value={this.props.email}
         error={emailError}
         errorColor='red'
-        style= {{width:5,height:20,lineWidth:0.5,
-        activeLineWidth:5}}
         onChangeText={ (email) => this.onEmailChange( email ) }
         onBlur = {() => { this.validate(this.props.email) }}
       />

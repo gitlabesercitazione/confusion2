@@ -7,6 +7,16 @@ import NavigatorService from './../utils/navigator';
 
 class Login_Screen extends Component {
 
+  constructor(props) {
+
+    super(props)
+    this.props.state = {
+      flaglogin : false
+    }
+
+  
+
+  }
   static navigationOptions = {
     header: null,
   };

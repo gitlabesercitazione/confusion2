@@ -108,7 +108,7 @@ export const loginUser = ({ email, password }) => {
       console.log('user logged successfully');
 
       loginUserSuccess(dispatch, user);
-      NavigatorService.reset('settings_screen');
+      NavigatorService.reset('main_screen');
 
     }
     catch (error) {
