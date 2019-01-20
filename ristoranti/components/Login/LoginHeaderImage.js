@@ -36,7 +36,7 @@ class LoginHeaderImage extends Component {
     if ( this.props.keyboardflag == false || this.props.loginStatus == 'fbchecking' || this.state.fbcheckingFinished) {
 
         if ( this.props.emailPwdBtnStr == 'SignUp' || this.props.emailPwdBtnStr == 'Accedi') {
-          let contentHeight = scaleModerate(480, 1);
+          let contentHeight = scaleModerate(380, 1);
           let height = Dimensions.get('window').height - contentHeight;
           let width = Dimensions.get('window').width;
           image = (<Image style={[styles.image, {height, width}]}
@@ -74,7 +74,7 @@ let styles = RkStyleSheet.create(theme => ({
   image: {
     resizeMode: 'cover',
     marginBottom: scaleVertical(5),
-    marginVertical: 10,
+    marginVertical: 0,
     height: 5
   },
   profileImage: {

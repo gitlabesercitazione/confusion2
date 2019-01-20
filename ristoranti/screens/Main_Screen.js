@@ -8,7 +8,7 @@ import Inbox from './Inbox'
 import Trips from './Trips'
 import { Provider } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import MenuTopbar from './MenuTopbar'
 import reducers from '../reducers';
 // import { Font } from 'expo';
 
@@ -64,15 +64,22 @@ export default class MainNavigator extends React.Component {
     
     super(props);
     this.state = {drawerOpen: null};
-    console.log("===============================================");
-  
+    console.log("==========DRAWER=========================");
+    // console.log(this.props.navigate('DrawerOpen'));
     bootstrap();
   }
 
   componentWillMount() {
   }
   
-
+   openDrawen = () => {
+    // this.props.navigate('DrawerOpen');
+    console.log("ho cliccato !!!!!!!");
+    // console.log(this.props)
+    // console.log(this.props.navigation.actions.openDrawer);
+    this.props.navigation.openDrawer();
+    // this.props.navigate('DrawerOpen');
+   }
 
   // async componentDidMount() {
   //   await  Expo.Font.loadAsync({
@@ -197,8 +204,8 @@ renderMainContent = () => {
 
     
       return (
-
           <View style={styles2.container}>
+            <MenuTopbar drawerOpen = {this.openDrawen}/>
           {/* <Toolbar/> */}
                       <MainNavigator/>
 

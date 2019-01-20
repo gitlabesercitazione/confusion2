@@ -1,1 +1,1 @@
-export const fbappid = '******************';
+export const fbappid = '2183273091946321';

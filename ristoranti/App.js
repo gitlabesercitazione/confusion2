@@ -34,6 +34,7 @@ import Location_Screen from './screens/Location_Screen';
 import Profile_Screen from './screens/Profile_Screen';
 import Reset_Screen from './screens/Reset_Screen';
 import Settings_Screen from './screens/Settings_Screen';
+import TopBar from './screens/TopBar'
 import { RootStack } from './config/router';
 import drawerStyles from './drawerStyles';
 import Drawer from 'react-native-drawer';
@@ -99,31 +100,31 @@ orders_screen: { screen: Orders_Screen },
 settings_screen: { screen: Settings_Screen },
 
 */
-renderSideMenuContent = () => {
-  return (
-    <View style={{height: '100%'}}>
-      <Text style={styles.sideMenuContentItem}>
-        This is the side menu
-      </Text>
-    </View>
-  )
-}
+// renderSideMenuContent = () => {
+//   return (
+//     <View style={{height: '100%',width: '100%'}}>
+//       <Text style={styles.sideMenuContentItem}>
+//         This is the side menu
+//       </Text>
+//     </View>
+//   )
+// }
 
-renderMainContent = () => {
-  if (!this.state.drawerOpen) {
-    return (
-      <View>
-        <Text style={styles.welcome}>Push to Open Side Menu</Text>
-      </View>
-    )
-  } else {
-    return (
-      <Text style={styles.drawerOpen}>
-        The side menu is open
-      </Text>
-    )
-  }
-}
+// renderMainContent = () => {
+//   if (!this.state.drawerOpen) {
+//     return (
+//       <View>
+//         <Text style={styles.welcome}>Push to Open Side Menu</Text>
+//       </View>
+//     )
+//   } else {
+//     return (
+//       <Text style={styles.drawerOpen}>
+//         The side menu is open
+//       </Text>
+//     )
+//   }
+// }
 
 
 
@@ -131,89 +132,29 @@ renderMainContent = () => {
 
     // const MainNavigator = TabNavigator({
       var {height, width } = 100;
-let routeConfigs = {
-  Home: {
-    screen: Main_Screen
-  },
-  Profile: {
-    screen: Settings_Screen
-  }
-};
+// let routeConfigs = {
+//   Home: {
+//     screen: Main_Screen,
+//     style: {
+//       leftDrawerWidth: 40,
+//     }
+//   },
+//   Profile: {
+//     screen: Settings_Screen,
+//     style: {
+//       leftDrawerWidth: 40,
+//     }
+//   }
+// };
 
-let drawerNavigatorConfig = {
-// initialRouteName : Home,
-drawerWidth : width /3
-};
+// let drawerNavigatorConfig = {
+// // initialRouteName : Home,
+// drawerWidth: 250,
+// drawerPosition: "left",
+// leftDrawerWidth: 40
+// };
 
-const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
-    // const MainNavigator = createBottomTabNavigator({
-    //   // settings_screen: { screen: Settings_Screen },
-
-    //   Explore: {
-    //     screen: Explore,
-    //     navigationOptions: {
-    //       tabBarLabel: 'ESPLORA',
-    //       tabBarIcon: ({ tintColor }) => (
-    //         <Icon name="ios-search-outline" color={tintColor} size={24} />
-    //       )
-    //     }
-    //   },
-    //   Saved: {
-    //     screen: Saved,
-    //     navigationOptions: {
-    //       tabBarLabel: 'PREFERITI',
-    //       tabBarIcon: ({ tintColor }) => (
-    //         <Icon name="ios-heart-outline" color={tintColor} size={24} />
-    //       )
-    //     }
-    //   },
-    //   Trips: {
-    //     screen: Trips,
-    //     navigationOptions: {
-    //       tabBarLabel: 'PRENOTAZIONI',
-    //       tabBarIcon: ({ tintColor }) => (
-    //         <Image source={require('./assets/airbnb.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-    //       )
-    //     }
-    //   },
-    //   Inbox: {
-    //     screen: Inbox,
-    //     navigationOptions: {
-    //       tabBarLabel: 'RICHIESTE',
-    //       tabBarIcon: ({ tintColor }) => (
-    //         <Icon name="ios-chatboxes-outline" color={tintColor} size={24} />
-    //       )
-    //     }
-    //   },
-    //   Profile: {
-    //     screen: Login_Screen,
-    //     navigationOptions: {
-    //       tabBarLabel: 'PROFILO',
-    //       tabBarIcon: ({ tintColor }) => (
-    //         <Icon name="ios-person-outline" color={tintColor} size={24} />
-    //       )
-    //     }
-    //   },
-    //   Profile: {
-    //     screen: Profile_Screen,
-       
-    //   }
-    // }, {
-    //     tabBarOptions: {
-    //       activeTintColor: 'red',
-    //       inactiveTintColor: 'grey',
-    //       style: {
-    //         backgroundColor: 'white',
-    //         borderTopWidth: 0,
-    //         shadowOffset: { width: 5, height: 3 },
-    //         shadowColor: 'black',
-    //         shadowOpacity: 0.5,
-    //         elevation: 5
-    //       }
-    //     }
-    //   })
-
-//       loading_scr: { screen: Loading_Screen },
+// const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
 
     const WellCome = createStackNavigator({
       welcome_screen: { screen: Welcome_Screen },
@@ -237,7 +178,7 @@ const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
        
         {/* <WellCome ref={navigatorRef => {
           NavigatorService.setContainer(navigatorRef);}}> */}
-                  <Toolbar/>
+                  <TopBar styles="{width: 100}" />
 {/* </WellCome> */}
           </View>
           
