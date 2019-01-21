@@ -4,7 +4,6 @@ import TopBar from './TopBar'
 import { createDrawerNavigator} from 'react-navigation';
 
 
-
 class MenuTopbar extends TopBar {
 
     constructor(props) {
@@ -23,11 +22,12 @@ render() {
     return(
       <Toolbar
         leftElement="menu"
-        centerElement="Searchable"
+        centerElement="Nappetito"
         onLeftElementPress = {this.props.drawerOpen}
         searchable={{
           autoFocus: true,
           placeholder: 'Search',
+          titleText : {color: "red"}
         }}
         rightElement={{
             menu: {
@@ -35,8 +35,17 @@ render() {
                 labels: ["item 1", "item 2"]
             }
         }}
+        style={{
+            container: { backgroundColor: "red",height: 70,paddingTop:20},
+            leftElement: { color: "white" },
+            titleText: { color: "white" },
+            rightElement: { color: "white" },
+            
+            marginTop: 20
+        }}
         onRightElementPress={ (label) => { console.log(label) }}
-      />)
+      />
+      )
     }
 }
 export default MenuTopbar;

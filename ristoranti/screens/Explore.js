@@ -14,22 +14,61 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 import Category from '../components/Explore/Category'
 import Home from '../components/Explore/Home'
+import {Geolocation} from './GeolocationExample';
+
 const { height, width } = Dimensions.get('window')
 class Explore extends Component {
-
+    constructor() {
+        super();
+        this.state = {
+         initialPosition: null,
+         lastPosition: null
+        }
+      }
+      watchID = (null);
     componentWillMount() {
         this.startHeaderHeight = 80
         if (Platform.OS == 'android') {
             this.startHeaderHeight = 100 + StatusBar.currentHeight
         }
+        this.watchId = navigator.geolocation.watchPosition(
+            (position) => {
+              this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                error: null,
+              });
+            },
+            (error) => this.setState({ error: error.message }),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+          );
+          
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+              var initialPosition = JSON.stringify(position);
+              this.setState({initialPosition});
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+           );
+           this.watchID = navigator.geolocation.watchPosition((position) => {
+            var lastPosition = JSON.stringify(position);
+            this.setState({lastPosition});
+           });
     }
+    componentWillUnmount = () => {
+        navigator.geolocation.clearWatch(this.watchID);
+      }
 
     render() {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
-
-
+                <GeolocationExample
+      initialPosition = {this.state.initialPosition}
+      lastPosition = {this.state.lastPosition}
+    />
+    {/* 
                     <View style={{ height: this.startHeaderHeight, backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#dddddd' }}>
                         <View style={{
                             flexDirection: 'row', padding: 10,
@@ -48,7 +87,7 @@ class Explore extends Component {
                                 style={{ flex: 1, fontWeight: '700', backgroundColor: 'white' }}
                             />
                         </View>
-                    </View>
+                    </View> */}
                     <ScrollView
                         scrollEventThrottle={16}
                     >
