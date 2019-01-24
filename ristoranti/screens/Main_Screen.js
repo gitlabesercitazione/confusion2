@@ -46,6 +46,7 @@ var {height, width } = 100;
 //   }
 // };
 
+
 let drawerNavigatorConfig = {
 // initialRouteName : Home,
 drawerWidth : width /2
@@ -54,7 +55,16 @@ drawerWidth : width /2
 
 // const Toolbar = createDrawerNavigator(routeConfigs, drawerNavigatorConfig);
 export default class MainNavigator extends React.Component {
-
+  
+static navigationOptions = {
+  drawerLabel: 'Explore',
+  drawerIcon: ({ tintColor }) => (
+    <Image
+      source={require('../assets/icons/sendIcon.png')}
+      style={[ {tintColor: tintColor}]}
+    />
+  ),
+};
   //state = { loggedIn: true };
   state = {
     isLoaded: false,
@@ -75,8 +85,6 @@ export default class MainNavigator extends React.Component {
    openDrawen = () => {
     // this.props.navigate('DrawerOpen');
     console.log("ho cliccato !!!!!!!");
-    // console.log(this.props)
-    // console.log(this.props.navigation.actions.openDrawer);
     this.props.navigation.openDrawer();
     // this.props.navigate('DrawerOpen');
    }
@@ -176,15 +184,15 @@ renderMainContent = () => {
           )
         }
       },
-      Profile: {
-        screen: Login_Screen,
-        navigationOptions: {
-          tabBarLabel: 'PROFILO',
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-person-outline" color={tintColor} size={24} />
-          )
-        }
-      }
+      // Profile: {
+      //   screen: Login_Screen,
+      //   navigationOptions: {
+      //     tabBarLabel: 'PROFILO',
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Icon name="ios-person-outline" color={tintColor} size={24} />
+      //     )
+      //   }
+      // }
     }, {
         tabBarOptions: {
           activeTintColor: 'red',

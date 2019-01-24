@@ -13,61 +13,27 @@ import {
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Category from '../components/Explore/Category'
-import Home from '../components/Explore/Home'
-import {Geolocation} from './GeolocationExample';
+import Home from '../components/Explore/Home';
+import GeolocationExample from '../screens/GeolocationExample';
 
 const { height, width } = Dimensions.get('window')
 class Explore extends Component {
     constructor() {
         super();
-        this.state = {
-         initialPosition: null,
-         lastPosition: null
-        }
       }
-      watchID = (null);
     componentWillMount() {
         this.startHeaderHeight = 80
         if (Platform.OS == 'android') {
             this.startHeaderHeight = 100 + StatusBar.currentHeight
         }
-        this.watchId = navigator.geolocation.watchPosition(
-            (position) => {
-              this.setState({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                error: null,
-              });
-            },
-            (error) => this.setState({ error: error.message }),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
-          );
-          
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-              var initialPosition = JSON.stringify(position);
-              this.setState({initialPosition});
-            },
-            (error) => alert(error.message),
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-           );
-           this.watchID = navigator.geolocation.watchPosition((position) => {
-            var lastPosition = JSON.stringify(position);
-            this.setState({lastPosition});
-           });
+        
     }
-    componentWillUnmount = () => {
-        navigator.geolocation.clearWatch(this.watchID);
-      }
+ 
 
     render() {
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                <GeolocationExample
-      initialPosition = {this.state.initialPosition}
-      lastPosition = {this.state.lastPosition}
-    />
+      
     {/* 
                     <View style={{ height: this.startHeaderHeight, backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#dddddd' }}>
                         <View style={{
@@ -96,20 +62,20 @@ class Explore extends Component {
                                 Cosa cerchi?
                             </Text>
 
-                            <View style={{ height: 130, marginTop: 20 }}>
+                            <View style={{ height: 220, marginHorizontal: 20 }}>
                                 <ScrollView
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
                                 >
-                                    <Category imageUri={require('../assets/home.jpg')}
-                                        name="Pizzeria"
+                                    <Category imageUri={require('../assets/pizzeria.jpg')}
+                                        name="Pizzeria" style={{width:200, height: 200}}
                                     />
-                                    <Category imageUri={require('../assets/experiences.jpg')}
+                                    <Category imageUri={require('../assets/ristorante.jpg')}
                                         name="Ristorante italiano"
                                     />
-                                    <Category imageUri={require('../assets/restaurant.jpg')}
-                                        name="Ristorante etnico"
-                                    />
+                                    {/* <Category imageUri={require('../assets/restaurant.jpg')} */}
+                                        {/* name="Ristorante etnico" */}
+                                    {/* /> */}
                                 </ScrollView>
                             </View>
                             <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
@@ -122,9 +88,11 @@ class Explore extends Component {
                                 <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
                                     <Image
                                         style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/home.jpg')}
+                                        source={require('../assets/restaurant.jpg')}
                                     />
-
+                                    <Text style={{ fontWeight: '100', marginTop: 10 }}>
+                                        Ristorante Napoli
+                                    </Text>
                                 </View>
                             </View>
                         </View>
@@ -134,22 +102,25 @@ class Explore extends Component {
                             </Text>
                             <View style={{ paddingHorizontal: 20, marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                                 <Home width={width}
-                                    name="Esempio 1"
+                                    name="Pizzeria Da Gennaro"
                                     type="PIZZERIA"
-                                    price={82}
+                                    img={require('../assets/pizzeriaGennaro.jpg')}
+                                    price={22}
                                     rating={4}
                                 />
                                 <Home width={width}
-                                    name="Esempio 2"
+                                    name="Pizzeria La Smorfia"
                                     type="PIZZERIA"
-                                    price={82}
-                                    rating={4}
+                                    price={31}
+                                    rating={5}
+                                    img={require('../assets/pizzeriaSmorfia.jpg')}
                                 />
                                 <Home width={width}
-                                    name="Esempio 3"
+                                    name="Pizzeria Venezia"
                                     type="PIZZERIA"
-                                    price={82}
-                                    rating={4}
+                                    price={25}
+                                    rating={3}
+                                    img={require('../assets/pizzeriaVenezia.jpg')}
                                 />
 
 
@@ -157,7 +128,6 @@ class Explore extends Component {
                         </View>
                     </ScrollView>
 
-                </View>
             </SafeAreaView>
         );
     }

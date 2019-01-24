@@ -19,6 +19,7 @@ import { Header } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { logoutUser, userDetailsFetch } from '../actions';
 import firebase from 'firebase';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import users from './../data/raw/users';
 import {Avatar} from './../components';
@@ -31,22 +32,27 @@ import LoadingSpinner from './../components/Loading/LoadingSpinner';
 // FontAwesome.cog
 
 class Settings_Screen extends Component {
-
+    static navigationOptions = {
+        drawerLabel: 'Profilo',
+        drawerIcon: ({ tintColor }) => (
+            <Icon name="ios-person-outline" color={tintColor} size={24} />
+        ),
+      };
   // Donot show header
-  static navigationOptions = {
-    headerTitle: 'Profile Settings',
-    tabBarIcon: ({ tintColor }) => (
-      <RkText
-        rkType='awesome'
-        style={{
-          color: tintColor,
-          fontSize: 24,
-          marginBottom: 0,
-        }}>
-          {FontAwesome.cog}
-      </RkText>
-    ),
-  };
+  // static navigationOptions = {
+  //   headerTitle: 'Profile Settings',
+  //   tabBarIcon: ({ tintColor }) => (
+  //     <RkText
+  //       rkType='awesome'
+  //       style={{
+  //         color: tintColor,
+  //         fontSize: 24,
+  //         marginBottom: 0,
+  //       }}>
+  //         {FontAwesome.cog}
+  //     </RkText>
+  //   ),
+  // };
 
   constructor(props) {
     super(props);
