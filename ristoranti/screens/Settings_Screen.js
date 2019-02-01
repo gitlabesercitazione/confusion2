@@ -62,6 +62,7 @@ class Settings_Screen extends Component {
     }
     console.log(" oggetto : ");
     console.log(this.user);
+    console.log(this.props);
 
     this.state = {
       firstName: this.user.firstName,
@@ -101,13 +102,13 @@ class Settings_Screen extends Component {
               <RkText rkType='header6 primary'>INFO</RkText>
             </View>
             <View style={styles.row}>
-              <RkTextInput label='First Name'
+              <RkTextInput label='Nome'
                            value={firstname}
                            rkType='right clear'
                            onChangeText={(text) => this.setState({firstName: text})}/>
             </View>
             <View style={styles.row}>
-              <RkTextInput label='Last Name'
+              <RkTextInput label='Cognome'
                            value={lastname}
                            onChangeText={(text) => this.setState({lastName: text})}
                            rkType='right clear'/>
@@ -119,7 +120,7 @@ class Settings_Screen extends Component {
                            rkType='right clear'/>
             </View>
             <View style={styles.row}>
-              <RkTextInput label='Phone'
+              <RkTextInput label='Telefono'
                            value={phone}
                            onChangeText={(text) => this.setState({phone: text})}
                            rkType='right clear'/>
@@ -130,7 +131,7 @@ class Settings_Screen extends Component {
           <GradientButton
             rkType='large'
             style={styles.button}
-            text='Sign Out'
+            text='Logout'
             onPress={ () => this.props.logoutUser()  }
           />
         </RkAvoidKeyboard>

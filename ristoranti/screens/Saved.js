@@ -10,14 +10,15 @@ import {
 import Home from '../components/Explore/Home';
 
 const { height, width } = Dimensions.get('window')
-
+import Card from './Card';
 class Saved extends Component {
     render() {
         return (
             <SafeAreaView style={{ flex: 1 }}>
 
             <ScrollView>
-            <View style={{ marginTop: 40 }}>
+            <Card/>
+            {/* <View style={{ marginTop: 40 }}>
                             <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
                                 I preferiti
                             </Text>
@@ -41,7 +42,7 @@ class Saved extends Component {
 
 
                             </View>
-                        </View>
+                        </View> */}
                     </ScrollView>
                 </SafeAreaView>
         );

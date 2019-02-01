@@ -141,7 +141,7 @@ export const resetUser = ({ email }) => {
 };
 
 export const logoutUser = () => {
-
+console.log("entratooooooooooooooooooooooooooooo");
   return async (dispatch) => {
       dispatch({
         type: LOGIN_STATUS_CHANGED,
@@ -149,7 +149,14 @@ export const logoutUser = () => {
       });
       try {
         await firebase.auth().signOut();
+     
+        dispatch({
+          type: ERROR_SET,
+          payload: 'Welcome to our Online Shop'
+        });
       } catch (error) {
+
+        console.log("---------------------ERRORE-----------------------");
         console.log(error);
         dispatch({
           type: LOGIN_STATUS_CHANGED,
@@ -187,11 +194,12 @@ export const signupUser = ({ email, password, phone, firstname, lastname  }) => 
         displayName
       });
       console.log(user);
-      loginUserSuccess(dispatch, user);
       dispatch({
         type: ERROR_SET,
         payload: 'Welcome to our Online Shop'
       });
+      loginUserSuccess(dispatch, user);
+     
     }
     catch (error) {
       console.log(error);

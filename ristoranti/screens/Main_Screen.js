@@ -184,15 +184,15 @@ renderMainContent = () => {
           )
         }
       },
-      // Profile: {
-      //   screen: Login_Screen,
-      //   navigationOptions: {
-      //     tabBarLabel: 'PROFILO',
-      //     tabBarIcon: ({ tintColor }) => (
-      //       <Icon name="ios-person-outline" color={tintColor} size={24} />
-      //     )
-      //   }
-      // }
+      Profile: {
+        screen: Login_Screen,
+        navigationOptions: {
+          tabBarLabel: 'PROFILO',
+          tabBarIcon: ({ tintColor }) => (
+            <Icon name="ios-person-outline" color={tintColor} size={24} />
+          )
+        }
+      }
     }, {
         tabBarOptions: {
           activeTintColor: 'red',
